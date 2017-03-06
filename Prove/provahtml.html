@@ -1,0 +1,51 @@
+<!---->
+<!DOCTYPE html>
+<!--The <!DOCTYPE> declaration represents the document type, and helps browsers to display web pages correctly.-->
+<!--All HTML documents must start with a document type declaration: <!DOCTYPE html>.-->
+<html lang="en-US">
+<!--Declaring a language is important for accessibility applications (screen readers) and search engines:-->
+<head>
+<!--The <head> element is a container for metadata. HTML metadata is data about the HTML document.
+
+Metadata typically define the document title, character set, styles, links, scripts, and other meta information.-->
+	<title>Page Title</title>
+</head>
+<body>
+<!--Only the content inside the <body> section (the white area above) is displayed in a browser.-->
+<!--HTML Elements
+An HTML element usually consists of a start tag and end tag, with the content inserted in between: The HTML element is everything from the start tag to the end tag:
+
+HTML elements with no content are called empty elements. Empty elements do not have an end tag, such as the <br> element (which indicates a line break).
+Empty elements can be "closed" in the opening tag like this: <br />.
+
+HTML5 does not require empty elements to be closed. But if you want stricter validation, or if you need to make your document readable by XML parsers, you must close all HTML elements properly.
+
+HTML elements can be nested (elements can contain elements).
+All HTML documents consist of nested HTML elements.-->
+<h1>My First Heading</h1>
+<p title="Compaio quando passi sopra col mouse"> My first paragraph.</p> 
+<!--The element content is: My first paragraph.
+
+With HTML, you cannot change the output by adding extra spaces or extra lines in your HTML code.
+The browser will remove any extra spaces and extra lines when the page is displayed:-->
+<p>This is <br> a paragraph <br> che va a           capo</p>
+<hr> <!--Traccia una riga separatrice.-->
+<a href="https://www.w3schools.com">This is a link</a>
+<!--HTML links are defined with the <a> tag.
+The link's destination is specified in the href attribute. 
+
+Attributes are used to provide additional information about HTML elements.
+Attributes are always specified in the start tag
+Attributes usually come in name/value pairs like: name="value"
+
+Double quotes around attribute values are the most common in HTML, but single quotes can also be used.
+In some situations, when the attribute value itself contains double quotes, it is necessary to use single quotes:--> 
+ <img src="w3schools.jpg" alt="W3Schools.com" width="104" height="142"> 
+ <!--HTML images are defined with the <img> tag.
+The source file (src), alternative text (alt), width, and height are provided as attributes:
+The image size is specified in pixels
+
+The alt attribute specifies an alternative text to be used, when an image cannot be displayed.
+The value of the attribute can be read by screen readers. This way, someone "listening" to the webpage, e.g. a blind person, can "hear" the element.-->
+</body>
+</html>
