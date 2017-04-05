@@ -1,6 +1,8 @@
 <?php
 include 'Studente.php';
+include 'Connessione.php';
 
+/*
 $studenti = [
 		["nome"=>"RICCARDO", "cognome"=>"GABOSSI", "email" => "riccardo.gabossi@edu.itspiemonte.it"],
 		["nome"=>"VLADIMIR", "cognome"=>"VIBIO", "email" => "vladimir.vibio@edu.itspiemonte.it"],
@@ -30,6 +32,18 @@ $studenti = [
 		["nome"=>"MATTIA", "cognome"=>"VICENZI", "email" => "mattia.vicenzi@edu.itspiemonte.it"],
 		["nome"=>"MARCO", "cognome"=>"PANZANARO", "email" => "marco.panzanaro@edu.itspiemonte.it"],
 ];
+*/
+
+$sql = "SELECT * FROM studenti";
+
+$result = mysqli_query($mysqliConnction, $sql);
+
+
+//ciclo la variabile per farmi ritornare i risultati riga per riga
+while ($row = mysqli_fetch_array($result)) { //finchè ci sono righe vai avanti, quando son finiet ritorna false
+  $studenti[] = array("cognome"=>$row['cognome'],"nome"=>$row['nome'],"email"=>$row['email']);
+}
+
 
 $elencoStudenti= array();
 

@@ -30,6 +30,28 @@ include 'header.php'
 <?php endif; ?>
 
 
+<?php if (isset($_GET['queryDB'])) : ?>
+
+ <table class="table table-striped">
+   <thead>
+     <tr>
+       <th>query</th>
+     </tr>
+   </thead>
+
+   <tbody>
+     <?php foreach ($elencoStudenti as $studente): ?>
+     <tr>
+       <td>inserti into studenti (nome, cognome, email) values ('<?=$studente?->nome ?>{}</td>
+       <td><?=$studente?></td>
+       <td><?=$studente?></td>
+   </tr>
+ <?php endforeach; ?>
+   </tbody>
+
+ </table>
+<?php endif; ?>
+
  <?php if (isset($_GET['grid'])) : ?>
 
 
