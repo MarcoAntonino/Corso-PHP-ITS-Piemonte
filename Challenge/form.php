@@ -8,7 +8,7 @@
 <form action="form_processing.php" method="post">
 	<fieldset>
 	<legend>Dati da inviare</legend>	
-	<input type="text" name="Nome" placeholder ="Scrivi qui">
+	<input type="text" name="Nome" placeholder ="Nome">
 	<input type="submit" name="Invia">
 	</fieldset>
 
