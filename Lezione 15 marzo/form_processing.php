@@ -1,5 +1,6 @@
 <?php include 'headers.php'; ?>
-<!--In questo modo se si digita la apss errata, si torna alla pagina grazie alla funzione-->
+<!--In questo modo se si digita la apss errata, si torna alla
+pagina grazie alla funzione-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <body>
 
 <pre> <!--Mette il testo preformattato-->
-<?php 
+<?php
 
 	/*
 	if (isset($_POST['username']))
@@ -32,7 +33,9 @@ if (isset($_POST['submit'])){
 		$stringa = "Benvenuto ".ucfirst(strtolower($username));
 		$_SESSION['username'] = $username;
 
-		//in questo modo scrive il mio nome con la M maiuscola ma prima butta tutte le lettere minuscole quindi se srivo MArco diventa marco e poi MArco. Ovvio che non funziona perchè l'unico username accettato è marco
+		//in questo modo scrive il mio nome con la M maiuscola ma prima butta tutte
+		//le lettere minuscole quindi se scrivo MArco diventa marco e poi Marco.
+		//Ovvio che non funziona perchè l'unico username accettato è marco
 	} else {
 		/*
 		$stringa = "Username e password errati"
@@ -43,7 +46,7 @@ if (isset($_POST['submit'])){
 		."login"
 		."</a>.";
 		*/
-		redirect("form.php");
+		header("location: form.php");
 	}
 
 	echo $stringa;
