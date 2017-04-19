@@ -26,6 +26,10 @@ class Database {
             return false;
         
     }
+    
+    public function insert ($query) {
+        
+    }
 }
 
 
