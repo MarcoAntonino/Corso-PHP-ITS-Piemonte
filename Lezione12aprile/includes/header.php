@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
-    <title>Blog Template for Bootstrap</title>
+    <title><?=TITOLO?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -36,9 +36,9 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="http://getbootstrap.com/examples/blog/#">Home</a>
-          <a class="blog-nav-item" href="http://getbootstrap.com/examples/blog/#">New features</a>
-          <a class="blog-nav-item" href="http://getbootstrap.com/examples/blog/#">Press</a>
+          <a class="blog-nav-item active" href="#">Home</a>
+          <a class="blog-nav-item" href="?view=inserisci">Nuovo Post</a>
+          <a class="blog-nav-item" href="?view=inserisci">Nuova Categoria</a>
           <a class="blog-nav-item" href="http://getbootstrap.com/examples/blog/#">New hires</a>
           <a class="blog-nav-item" href="http://getbootstrap.com/examples/blog/#">About</a>
         </nav>

@@ -2,13 +2,28 @@
     <div class="container">
 
       <div class="blog-header">
-        <h1 class="blog-title">The Bootstrap Blog</h1>
-        <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
+        <h1 class="blog-title"><?=TITOLO?></h1>
+        <p class="lead blog-description"><?=SOTTOTITOLO?></p>
       </div>
 
       <div class="row">
 
         <div class="col-sm-8 blog-main">
+            
+            <?php
+            
+            $categoria = isset ($_REQUEST['id_cat']) ? $_REQUEST['id_cat'] : false;
+            
+            if($categoria)
+                $query = "SELECT * FROM posts where id_categoria = $categoria";
+            else
+                $query = "SELECT * FROM posts";
+            
+            $posts = $DB->select($query);
+           
+            
+            
+            ?>
 
           <div class="blog-post">
             <h2 class="blog-post-title">Sample blog post</h2>
