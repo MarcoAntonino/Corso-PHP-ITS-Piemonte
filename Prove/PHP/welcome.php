@@ -25,14 +25,23 @@
 
       if($isPresent)
       {
-        echo "sei un figo";
+        if($_POST['sex']=="male" && $_POST['account']=="plus")
+        {
+          echo "Benvenuto plus";
+        }
+        elseif ($_POST['sex']=="male"  && $_POST['account']=="free") {
+          echo "Benvenuto free";
+        }
+        elseif ($_POST['sex']=="female") {
+          echo "Benvenuta";
+        }
       }
       else {
         echo "sei una merdaccia";
       }
       echo "<br>";
 
-      
+
       if(isset($_COOKIE['cooUsername']) )
       {
         $saluto="Bentornato";
