@@ -30,6 +30,8 @@ $sassuolo = new team ("Sassuolo");
 $torino = new team ("Torino");
 $udinese = new team ("Udinese");
 
+$_SESSION['table'] = array($atalanta, $bologna, $cagliari, $chievo, $crotone, $empoli, $fiorentina, $inter, $juventus, $lazio, $milan, $napoli, $palermo, $pescara, $roma, $sampdoria, $sassuolo, $torino, $udinese);
+
 
 if (isset($_POST['team1Name']) && isset($_POST['team1Score']) && isset($_POST['team2Name']) && isset($_POST['team2Score'])){
 
@@ -37,8 +39,6 @@ if (isset($_POST['team1Name']) && isset($_POST['team1Score']) && isset($_POST['t
   $team1Score=$_POST['team1Score'];
   $team2Name=$_POST['team2Name'];
   $team2Score=$_POST['team2Score'];
-
-  //echo $team1Name."-".$team2Name.": ".$team1Score."-".$team2Score;
 
   $t1 = new team($team1Name);
   $t2 = new team($team2Name);
@@ -51,8 +51,6 @@ if (isset($_POST['team1Name']) && isset($_POST['team1Score']) && isset($_POST['t
   $game1->toString();
 
   echo "<br>ora si fa sul serio <br>";
-
-  //$campionato = getCampionato();
 
   if (!isset($_SESSION['savedChampionship'])){
 
@@ -74,39 +72,93 @@ if (isset($_POST['team1Name']) && isset($_POST['team1Score']) && isset($_POST['t
         }
 
 
-
-
-  // else{
-  //
-  //   array_push($_SESSION['savedChampionship'], $game1);
-  //
-  // }
-
-
-
-  //}
-
-  //$campionato = saveGame($campionato, $game1);
-
-  //setCampionato($campionato);
-  //$campionato = getCampionato();
-
-  //array_push($campionato, $game1);
-
-
-
   foreach ($_SESSION['savedChampionship'] as $game ) {
 
     echo $game->toString()."<br>";
   }
 
-  echo "<br> proviamo con il var dump<br>";
 
-  var_dump($_SESSION);
-  echo "<br>";
-  echo "<br>";
+//*******************************
 
-  var_dump($_SESSION['savedChampionship']);
+foreach ($_SESSION['savedChampionship'] as $game) {
+
+
+  if($game->getHomeTeamScore() > $game->getGuestTeamScore())
+  {
+    foreach ($_SESSION['table'] as $team) {
+      if($team->getName() == $game->getHomeTeam()->getName())
+      {
+        $team->setScore($team->getScore()+3);
+      }
+    }
+    echo "VINCE".$game->getHomeTeam()->getName()."<br>";
+
+  } elseif ($game->getHomeTeamScore() < $game->getGuestTeamScore()) {
+
+    foreach ($_SESSION['table'] as $team) {
+      if($team->getName() == $game->getGuestTeam()->getName())
+      {
+        $team->setScore($team->getScore()+3);
+      }
+    }
+    echo "VINCE OSPITE<br>";
+
+  } else {
+
+    foreach ($_SESSION['table'] as $team) {
+      if($team->getName() == $game->getHomeTeam()->getName())
+      {
+        $team->setScore($team->getScore()+1);
+      }
+    }
+
+    foreach ($_SESSION['table'] as $team) {
+      if($team->getName() == $game->getGuestTeam()->getName())
+      {
+        $team->setScore($team->getScore()+1);
+      }
+    }
+    echo "PAREGGIO<br>";
+  }
+
+
+
+
+
+}
+
+
+  echo "<br>CLASSIFICA:<br>";
+
+
+
+  foreach ($_SESSION['table'] as $team ) {
+
+    echo $team->toString()."<br>";
+  }
+
+
+  echo "<br>CLASSIFICA ordinata:<br>";
+
+  function sortTable($team1, $team2)
+  {
+    if($team1->getScore() == $team2->getScore())
+    {
+      return 0;
+    }
+
+    return ($team1->getScore() > $team2->getScore()) ? -1 : 1;;
+  }
+
+  usort($_SESSION['table'], "sortTable");
+
+
+
+  foreach ($_SESSION['table'] as $team ) {
+
+    echo $team->toString()."<br>";
+  }
+
 
   // $_SESSION['saluto']="ciao";
   // echo "<br>".$_SESSION['saluto'];
