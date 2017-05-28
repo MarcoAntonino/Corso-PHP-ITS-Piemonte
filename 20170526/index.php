@@ -1,4 +1,4 @@
-<?php session_start();
+<?php 
 include "api.php";?>
 
 <!DOCTYPE html>

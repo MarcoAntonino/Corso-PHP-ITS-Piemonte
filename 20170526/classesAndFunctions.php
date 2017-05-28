@@ -111,17 +111,31 @@ function saveGame($array,$game)
   return $array;
 }
 
+function gameExists($array, $game)
+{
+  $isPresent = false;
 
+  foreach ($_SESSION['savedChampionship'] as $gameToCheck) {
+
+      if($gameToCheck->getHomeTeam() == $game->getHomeTeam() && $gameToCheck->getGuestTeam() == $game->getGuestTeam())
+      {
+        $isPresent = true;
+      }
+
+  }
+
+  return $isPresent;
+}
 
 function setCampionato($campionato){
 
-  $_SESSION['campionatoSalvato'] = $campionato;
+  $_SESSION['savedChampionship'] = $campionato;
 
 }
 
 function getCampionato(){
 
-  return $_SESSION['campionatoSalvato'];
+  return $_SESSION['savedChampionship'];
 }
 
  ?>

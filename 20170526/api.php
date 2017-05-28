@@ -1,5 +1,6 @@
 <?php
-include 'classesAndFunctions.php';
+include 'classesAndFunctions.php'; //MOLTO IMPORTANTE: QUESTO è L'ORDINE
+session_start();
 $squadre = array("Atalanta", "Bologna", "Cagliari", "Chievo", "Crotone", "Empoli", "Fiorentina", "Genoa", "Inter", "Juventus", "Lazio", "Milan", "Napoli", "Palermo", "Pescara", "Roma", "Sampdoria", "Sassuolo","Torino", "Udinese");
 
 $team1Name;
@@ -45,6 +46,7 @@ if (isset($_POST['team1Name']) && isset($_POST['team1Score']) && isset($_POST['t
   echo "<br>";
   $t2->toString();
   echo "<br>";
+  $testGame = new game($juventus,$torino,6,0);
   $game1 = new game($t1,$t2,$team1Score,$team2Score);
   $game1->toString();
 
@@ -52,24 +54,59 @@ if (isset($_POST['team1Name']) && isset($_POST['team1Score']) && isset($_POST['t
 
   //$campionato = getCampionato();
 
-  if (in_array("campionatoSalvato",$_SESSION)){
+  if (!isset($_SESSION['savedChampionship'])){
 
-    $campionato = getCampionato();
+    $_SESSION['savedChampionship'] = array($game1);
 
-  }
+  } else if (gameExists($_SESSION['savedChampionship'], $game1)){
 
-  $campionato = saveGame($campionato, $game1);
+    foreach ($_SESSION['savedChampionship'] as $gameToCheck) {
 
-  setCampionato($campionato);
+        if($gameToCheck->getHomeTeam() == $game1->getHomeTeam() && $gameToCheck->getGuestTeam() == $game1->getGuestTeam())
+        {
+          $gameToCheck->setHomeTeamScore($game1->getHomeTeamScore());
+          $gameToCheck->setGuestTeamScore($game1->getGuestTeamScore());
+        }
+
+        }
+  }else{
+          array_push($_SESSION['savedChampionship'], $game1);
+        }
+
+
+
+
+  // else{
+  //
+  //   array_push($_SESSION['savedChampionship'], $game1);
+  //
+  // }
+
+
+
+  //}
+
+  //$campionato = saveGame($campionato, $game1);
+
+  //setCampionato($campionato);
   //$campionato = getCampionato();
 
   //array_push($campionato, $game1);
 
 
-  foreach ($campionato as $game ) {
 
-    echo $game->toString();
+  foreach ($_SESSION['savedChampionship'] as $game ) {
+
+    echo $game->toString()."<br>";
   }
+
+  echo "<br> proviamo con il var dump<br>";
+
+  var_dump($_SESSION);
+  echo "<br>";
+  echo "<br>";
+
+  var_dump($_SESSION['savedChampionship']);
 
   // $_SESSION['saluto']="ciao";
   // echo "<br>".$_SESSION['saluto'];
