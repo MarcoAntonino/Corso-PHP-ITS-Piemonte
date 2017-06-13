@@ -21,6 +21,7 @@ class Temperature
       return $this->time;
   }
 
+  
   function setValue($value) {
       $this->value = $value;
   }
