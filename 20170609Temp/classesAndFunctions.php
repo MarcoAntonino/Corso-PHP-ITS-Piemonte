@@ -16,7 +16,7 @@ class Temperature
   function getValue() {
       return $this->value;
   }
-
+  
   function getTime() {
       return $this->time;
   }
