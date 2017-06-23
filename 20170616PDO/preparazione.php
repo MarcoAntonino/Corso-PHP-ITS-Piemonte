@@ -10,8 +10,6 @@ include 'studente.php';
 
 try {
 
-
-
   $query = "select * from studenti where Id = :Id";
   $risultati = $conn->prepare($query);
   $Id = $_GET['Id']; //in questo modo possiamo passare il valore direttamente dalla barra degli indirizzi preparazione.php?Id=1 così

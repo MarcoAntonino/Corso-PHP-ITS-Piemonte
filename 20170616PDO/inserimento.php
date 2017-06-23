@@ -9,9 +9,7 @@ include 'studente.php';
 
 
 try {
-
-
-
+  
   $query = "INSERT INTO studenti (Nome, Cognome)
         VALUES (:Nome, :Cognome)";
 

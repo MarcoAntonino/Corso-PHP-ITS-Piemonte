@@ -52,7 +52,7 @@ try {
   while ($studente = $risultati->fetch()) {
     echo $studente->__toString();
     echo "<br>";
-
+    
   }
 
 
