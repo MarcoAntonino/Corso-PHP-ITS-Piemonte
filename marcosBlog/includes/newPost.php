@@ -1,29 +1,13 @@
 <?php
 if(isset($_POST['btnSubmit'])){
  try {
-   $query = "INSERT INTO blog_posts (title, subtitle, post, date_posted) VALUES (:title, :subtitle, :post, :date_posted)";
-   $results = $DB->link->prepare($query);
-   $title = $_POST["title"];
-   $subtitle = $_POST["subtitle"];
-   $post = $_POST["post"];
-   $date = time();
-   $results->bindParam(":title", $title, PDO::PARAM_STR);
-   $results->bindParam(":subtitle", $subtitle, PDO::PARAM_STR);
-   $results->bindParam(":post", $post, PDO::PARAM_STR);
-   $results->bindParam(":date_posted", $date, PDO::PARAM_STR);
-
-   if ($results->execute()) {
-     echo "record: ".$DB->link->lastInsertId()." inserted<br>" ;
-   }
+   $query = "INSERT INTO blog_posts (title, subtitle, post, category_id, date_posted) VALUES (:title, :subtitle, :post, :category_id, :date_posted)";
+   $DB->insert($query);
    } catch (Exception $e) {
-
      echo $e->getMessage();
-
    }
  }
-
  ?>
-
 
 <div class="col-sm-8 blog main">
   <form action="?view=newPost" method="post">
@@ -45,9 +29,20 @@ if(isset($_POST['btnSubmit'])){
     </div>
 
     <div class="checkbox">
-      <select class="form-control" name="tag">
-        <option value="0">Choose a tag</option>
-
+      <?php
+      $query = "SELECT id, name FROM categories";
+      $results = $DB->getLink()->prepare($query);
+      $results->execute();
+      $data = $results->fetchAll();
+      ?>
+      <select class="form-control" name="category">
+        <?php
+          foreach ($data as $row) {
+             ?>
+             <option value="<?= $row['id']?>"><?= $row['name']?></option>
+             <?php
+          }
+          ?>
       </select>
     </div>
     <button type="submit" class="btn btn-primary" name="btnSubmit">Submit</button>

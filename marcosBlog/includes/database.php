@@ -9,7 +9,7 @@ class Database
 	private $user;
 	private $pass;
 	private $dbname;
-	public $link;
+	private $link;
 
 	function __construct($dbname = DB_NAME, $host = DB_HOST, $user = DB_USER, $pass = DB_PASS) {
 		$this->host = $host;
@@ -18,6 +18,10 @@ class Database
 		$this->dbname = $dbname;
 		$this->connection();
 	}
+
+  function getLink() {
+      return $this->link;
+  }
 
 	function connection()	{
 
@@ -30,9 +34,22 @@ class Database
 
 	}
 
-	public function insert($query)
-	{
-		$insert = $this->link->query($query);
+	public function insert($query)	{
+		$results = $this->link->prepare($query);
+    $title = $_POST["title"];
+    $subtitle = $_POST["subtitle"];
+    $post = $_POST["post"];
+		$category = $_POST["category"];
+		echo "GUARDA: ".$_POST["category"];
+    $date = time();
+    $results->bindParam(":title", $title, PDO::PARAM_STR);
+    $results->bindParam(":subtitle", $subtitle, PDO::PARAM_STR);
+    $results->bindParam(":post", $post, PDO::PARAM_STR);
+    $results->bindParam(":date_posted", $date, PDO::PARAM_STR);
+		$results->bindParam(":category_id", $category, PDO::PARAM_STR);
+		if ($results->execute()) {
+      echo "record: ".$this->link->lastInsertId()." inserted<br>" ;
+		}
 	}
 }
 
