@@ -9,7 +9,7 @@ include 'studente.php';
 
 
 try {
-  
+
   $query = "INSERT INTO studenti (Nome, Cognome)
         VALUES (:Nome, :Cognome)";
 
@@ -23,10 +23,9 @@ try {
   $risultati->bindParam(":Cognome", $Cognome, PDO::PARAM_STR); // qui dice sostituisci il segnaposto con la variabile
 
   if ($risultati->execute()) {
-    echo "record: ".$conn->lastInsertId(). " inserito";
+    echo "record: ".$conn->lastInsertId(). " inserito<br>";
   }
  //esegui la query
-
 
 
 } catch (PDOException $e) {
