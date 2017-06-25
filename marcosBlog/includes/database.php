@@ -51,6 +51,14 @@ class Database
       echo "record: ".$this->link->lastInsertId()." inserted<br>" ;
 		}
 	}
+
+	public function delete($query)
+	{
+		$result = $this->link->prepare($query);
+		if ($results->execute()) {
+      echo "Cancellato<br>" ;
+		}
+	}
 }
 
 ?>

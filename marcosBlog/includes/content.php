@@ -5,10 +5,10 @@ try {
 
   if($category){
     // echo "CATEGORY IS TRUE";
-    $query = "SELECT title, subtitle, post, category_id, date_posted FROM blog_posts where category_id = $category order by date_posted desc";
+    $query = "SELECT id, title, subtitle, post, category_id, date_posted FROM blog_posts where category_id = $category order by date_posted desc";
   }else {
     // echo "CATEGORY IS FALSE";
-    $query = "SELECT title, subtitle, post, category_id, date_posted FROM blog_posts order by date_posted desc";
+    $query = "SELECT id,title, subtitle, post, category_id, date_posted FROM blog_posts order by date_posted desc";
   }
 
   $post = $DB->getLink()->prepare($query);
@@ -20,7 +20,7 @@ try {
     $results->execute();
     $data = $results->fetchAll();
     ?>
-    <form class="" action="#" method="post">
+    <form action="#" method="post">
       <div class="checkbox">
         <select class="form-control" name="category">
           <option value="">All categories</option>
@@ -41,6 +41,7 @@ try {
 <?php
 
   $post->execute();
+  //print_r($post);
 
     while ($row = $post->fetch()) {  ?>
 
@@ -50,9 +51,25 @@ try {
           <p class="blog_post-meta"><?=date("l jS \of F Y H:i", intval($row['date_posted'])) ?></p>
           <p><?=$row['post'] ?></p>
         </div>
+        <form action="#" method="post">
+          <input type="hidden" name="id" value="<?=$row['id']?>">
+          <button type="submit" name="modify" class="btn btn-warning">Modify</button>
+          <button type="submit" name="delete" class="btn btn-danger" >Delete</button>
+        </form>
 
       <?php
-      //print_r($row);
+
+
+    }
+
+    if (isset($_POST['delete'])) {
+
+      echo "ECCO IL TUO POST ID ".$_POST['id'];
+      $postId = $_POST['id'];
+      $query = "DELETE FROM blog_posts where id = $postId";
+      $results = $DB->getLink()->prepare($query);
+      $results->bindParam(":id", $postId, PDO::PARAM_STR);
+      $results->execute();
     }
 
 
@@ -64,3 +81,9 @@ try {
 
 ?>
 </div>
+
+<?php
+
+
+
+ ?>
