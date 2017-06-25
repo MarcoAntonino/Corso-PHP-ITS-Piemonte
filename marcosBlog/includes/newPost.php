@@ -8,7 +8,6 @@ if(isset($_POST['btnSubmit'])){
    }
  }
  ?>
-
 <div class="col-sm-8 blog main">
   <form action="?view=newPost" method="post">
     <div class="form-group">

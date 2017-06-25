@@ -29,7 +29,7 @@
       // case 'nopost';
       //     echo "non ci sono post";
       default:
-      //     include './includes/content.php';
+          include './includes/content.php';
            break;
   }
 
