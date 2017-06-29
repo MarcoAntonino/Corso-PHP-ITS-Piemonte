@@ -36,11 +36,11 @@ class Database
 
 	public function insert($query)	{
 		$results = $this->link->prepare($query);
-    $title = $_POST["title"];
-    $subtitle = $_POST["subtitle"];
-    $post = $_POST["post"];
-		$category = $_POST["category"];
-		echo "GUARDA: ".$_POST["category"];
+    $title = $_POST["newTitle"];
+    $subtitle = $_POST["newSubtitle"];
+    $post = $_POST["newPost"];
+		$category = $_POST["newCategory"];
+		echo "GUARDA: ".$_POST["newCategory"];
     $date = time();
     $results->bindParam(":title", $title, PDO::PARAM_STR);
     $results->bindParam(":subtitle", $subtitle, PDO::PARAM_STR);

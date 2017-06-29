@@ -13,7 +13,7 @@ if(isset($_POST['btnSubmitEdit'])){
  ?>
 
  <?php //INSERT
- if(isset($_POST['btnSubmit'])){
+ if(isset($_POST['btnNewPost'])){
   try {
     $query = "INSERT INTO blog_posts (title, subtitle, post, category_id, date_posted) VALUES (:title, :subtitle, :post, :category_id, :date_posted)";
     $DB->insert($query);

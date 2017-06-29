@@ -3,15 +3,15 @@
   <form action="?view=content" method="post">
     <div class="form-group">
       <label for="title">Title</label>
-      <input class="form-control" type="text" name="title" placeholder="Title" >
+      <input class="form-control" type="text" name="newTitle" placeholder="Title" >
     </div>
     <div class="form-group">
       <label for="subtitle">Subtitle</label>
-      <input class="form-control" type="text" name="subtitle" placeholder="Subtitle" >
+      <input class="form-control" type="text" name="newSubtitle" placeholder="Subtitle" >
     </div>
     <div class="form-group">
       <label for="post">Post</label>
-      <input class="form-control" rows=3 type="text" name="post" placeholder="Write here your post..." >
+      <input class="form-control" rows=3 type="text" name="newPost" placeholder="Write here your post..." >
     </div>
     <div class="form-group">
       <label for="imagine">Imagine</label>
@@ -25,7 +25,7 @@
       $results->execute();
       $data = $results->fetchAll();
       ?>
-      <select class="form-control" name="category">
+      <select class="form-control" name="newCategory">
         <?php
           foreach ($data as $row) {
              ?>
@@ -35,7 +35,7 @@
           ?>
       </select>
     </div>
-    <button type="submit" class="btn btn-primary" name="btnSubmit">Submit</button>
+    <button type="submit" class="btn btn-primary" name="btnNewPost">Submit</button>
 
   </form>
 
