@@ -17,6 +17,8 @@
       case 'newPost':
           include './includes/newPost.php';
           break;
+      case 'editPost':
+          include './includes/editPost.php';
       // case 'authors':
       //     include './includes/studenti.php';
       //     break;

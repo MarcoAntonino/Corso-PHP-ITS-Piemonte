@@ -1,7 +1,7 @@
 <?php
 
 /**
- *
+ *this class is not used anymore
  */
 class tag
 {

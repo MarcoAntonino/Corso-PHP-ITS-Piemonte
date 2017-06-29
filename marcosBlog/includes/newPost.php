@@ -1,15 +1,6 @@
-<?php
-if(isset($_POST['btnSubmit'])){
- try {
-   $query = "INSERT INTO blog_posts (title, subtitle, post, category_id, date_posted) VALUES (:title, :subtitle, :post, :category_id, :date_posted)";
-   $DB->insert($query);
-   } catch (Exception $e) {
-     echo $e->getMessage();
-   }
- }
- ?>
+
 <div class="col-sm-8 blog main">
-  <form action="?view=newPost" method="post">
+  <form action="?view=content" method="post">
     <div class="form-group">
       <label for="title">Title</label>
       <input class="form-control" type="text" name="title" placeholder="Title" >

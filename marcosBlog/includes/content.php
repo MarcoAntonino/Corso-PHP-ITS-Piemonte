@@ -1,3 +1,28 @@
+<?php //EDIT
+
+if(isset($_POST['btnSubmitEdit'])){
+  try {
+    $query = "UPDATE blog_posts SET title=:title, subtitle=:subtitle, post=:post, category_id=:category_id, date_posted=:date_posted WHERE id=:id";
+    $DB->update($query);
+  } catch (Exception $e) {
+    echo $e->getMessage();
+  }
+
+}
+
+ ?>
+
+ <?php //INSERT
+ if(isset($_POST['btnSubmit'])){
+  try {
+    $query = "INSERT INTO blog_posts (title, subtitle, post, category_id, date_posted) VALUES (:title, :subtitle, :post, :category_id, :date_posted)";
+    $DB->insert($query);
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+  ?>
+
 <?php
 
 try {
@@ -21,6 +46,7 @@ try {
     $data = $results->fetchAll();
     ?>
     <form action="#" method="post">
+      <label>Filter for category</label>
       <div class="checkbox">
         <select class="form-control" name="category">
           <option value="">All categories</option>
@@ -51,10 +77,13 @@ try {
           <p class="blog_post-meta"><?=date("l jS \of F Y H:i", intval($row['date_posted'])) ?></p>
           <p><?=$row['post'] ?></p>
         </div>
+        <form action="?view=editPost" method="post">
+          <input type="hidden" name="id" value="<?=$row['id']?>">
+          <button type="submit" name="edit" class="btn btn-warning">Edit</button>
+        </form>
         <form action="#" method="post">
           <input type="hidden" name="id" value="<?=$row['id']?>">
-          <button type="submit" name="modify" class="btn btn-warning">Modify</button>
-          <button type="submit" name="delete" class="btn btn-danger" >Delete</button>
+          <button type="submit" name="delete" class="btn btn-danger">Delete</button>
         </form>
 
       <?php
@@ -64,12 +93,19 @@ try {
 
     if (isset($_POST['delete'])) {
 
-      echo "ECCO IL TUO POST ID ".$_POST['id'];
-      $postId = $_POST['id'];
-      $query = "DELETE FROM blog_posts where id = $postId";
-      $results = $DB->getLink()->prepare($query);
-      $results->bindParam(":id", $postId, PDO::PARAM_STR);
-      $results->execute();
+      try {
+
+        echo "ECCO IL TUO POST ID ".$_POST['id'];
+        $DB->delete();
+
+      } catch (Exception $e) {
+
+        echo $e->getMessage();
+
+      }
+
+
+
     }
 
 

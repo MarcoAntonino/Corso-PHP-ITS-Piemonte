@@ -1,6 +1,6 @@
 <?php
-include 'includes/config.php';
-include 'includes/database.php';
+include 'config.php';
+include 'database.php';
 // include 'includes/funzioni.php';
 //
 // //istanzio un nuovo oggetto di titpo database
