@@ -37,8 +37,9 @@ if(isset($_POST['edit'])){
     <div class="checkbox">
       <?php
       $selectedCat = $postToEdit['category_id'];
-      $queryForCatId = "SELECT id, name FROM categories where id = $selectedCat";
+      $queryForCatId = "SELECT id, name FROM categories where id = :selectedCat";
       $resultForCat = $DB->getLink()->prepare($queryForCatId);
+      $resultForCat->bindParam(":selectedCat", $selectedCat, PDO::PARAM_STR);
       $resultForCat->execute();
       $selectedCatB = $resultForCat->fetch(PDO::FETCH_ASSOC);
       ?>

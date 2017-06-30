@@ -14,6 +14,7 @@
       // case "single":
       //     include './includes/single_post.php';
       //     break;
+      // usa urlencode() di PHP
       case 'newPost':
           include './includes/newPost.php';
           break;
@@ -22,8 +23,8 @@
       // case 'authors':
       //     include './includes/studenti.php';
       //     break;
-      // case 'elimina':
-      //     include './includes/deletePost.php';
+      // case 'login':
+      //     include './includes/login.php';
       //     break;
       //insert
       //delete

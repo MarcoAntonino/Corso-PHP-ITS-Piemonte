@@ -1,6 +1,7 @@
 <?php
 include 'config.php';
 include 'database.php';
+include 'admin.php';
 // include 'includes/funzioni.php';
 //
 // //istanzio un nuovo oggetto di titpo database

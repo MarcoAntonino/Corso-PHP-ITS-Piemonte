@@ -1,5 +1,30 @@
 <?php //EDIT
 
+if (isset($_POST['btnLogin'])) {
+
+  $admin = new Admin($_POST['username'],$_POST['psw']);
+
+  try {
+
+    $query = "SELECT * FROM people where username=:username AND password=:password";
+    $results = $DB->getLink()->prepare($query);
+    $username = $_POST["username"];
+    $psw = hash('sha256', $_POST["psw"]);
+    $results->bindParam(":username", $username, PDO::PARAM_STR);
+    $results->bindParam(":password", $psw, PDO::PARAM_STR);
+    $results->execute();
+    if (($results->rowCount())>0) {
+      $_SESSION['adminToken']="t0k3n";
+    }else {
+      echo "Wrong username or password. Please try again";
+    }
+
+  } catch (Exception $e) {
+    echo $e->getMessage();
+  }
+
+}
+
 if(isset($_POST['btnSubmitEdit'])){
   try {
     $query = "UPDATE blog_posts SET title=:title, subtitle=:subtitle, post=:post, category_id=:category_id, date_posted=:date_posted WHERE id=:id";
@@ -77,14 +102,20 @@ try {
           <p class="blog_post-meta"><?=date("l jS \of F Y H:i", intval($row['date_posted'])) ?></p>
           <p><?=$row['post'] ?></p>
         </div>
-        <form action="?view=editPost" method="post">
-          <input type="hidden" name="id" value="<?=$row['id']?>">
-          <button type="submit" name="edit" class="btn btn-warning">Edit</button>
-        </form>
-        <form action="#" method="post">
-          <input type="hidden" name="id" value="<?=$row['id']?>">
-          <button type="submit" name="delete" class="btn btn-danger">Delete</button>
-        </form>
+        <?php
+        if (isset($_SESSION['adminToken'])) {?>
+          <form action="?view=editPost" method="post">
+            <input type="hidden" name="id" value="<?=$row['id']?>">
+            <button type="submit" name="edit" class="btn btn-warning">Edit</button>
+          </form>
+          <form action="#" method="post">
+            <input type="hidden" name="id" value="<?=$row['id']?>">
+            <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+          </form>
+      <?php } ?>  
+
+
+
 
       <?php
 
