@@ -1,3 +1,4 @@
+var userId = 1;
 $('document').ready(function(){
 
   var root = 'https://jsonplaceholder.typicode.com';
@@ -11,7 +12,25 @@ $('document').ready(function(){
 
         data.map(function(post){ //map è una sorta di foreach
           //console.log(post.title);
-          $('section').append('<h2>'+post.title+'</h2><p>'+post.body+'</p>');
+          $('section').append('<div id=post'+post.id+'> <h2>'+post.title+'</h2><p>'+post.body+'</p>'+'<button class="btn btn-default" type="button" name="delete" id="delete'+post.id+'">Delete</button></div>');
+          $('#delete'+post.id).click(function(){
+
+            if (post.userId == userId) {
+
+              $.ajax({
+                url: root + '/posts/'+post.id,
+                method: 'DELETE',
+                success: function() {
+                  console.log("Post number "+post.id+" deleted");
+                  $('#post'+post.id).hide('slow', function(){
+                    $('#post'+post.id).remove();
+                  });
+                }
+              })
+            }else {
+              console.log("NO!");
+            }
+          })
         })
       }
     })
@@ -21,6 +40,15 @@ $('document').ready(function(){
   $('#about').click(function(){
     $.ajax({
       url: 'about.html',
+      success: function(data){
+        $('section').html(data);
+      }
+    })
+  })
+
+  $('#contactUs').click(function(){
+    $.ajax({
+      url: 'contactUs.html',
       success: function(data){
         $('section').html(data);
       }
