@@ -61,4 +61,18 @@ $('document').ready(function(){
 // $.('section').load('about.html') metodo alternativo
 
 
+$('#form').submit(function(event) {
+  var inputName = $('#name').val();
+  var inputEmail = $('#email').val();
+  var inputObject = $('#object').val();
+  var inputBody = $('#messageBody').val();
+  if (inputName == "" && inputEmail == "" && inputObject == "" && inputBody == "") {
+    event.preventDefault();
+    alert("Non puoi lasciare vuoti i campi");
+  }else {
+    alert("I valori sono: " +inputName+" "+inputEmail)
+  }
+
 })
+
+  })
