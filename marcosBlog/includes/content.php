@@ -91,8 +91,25 @@ try {
 
 <?php
 
+if (isset($_POST['delete'])) {
+
+  try {
+
+    echo "ECCO IL TUO POST ID ".$_POST['id'];
+    $DB->delete();
+
+  } catch (Exception $e) {
+
+    echo $e->getMessage();
+
+  }
+
+}
+
   $post->execute();
   //print_r($post);
+
+
 
     while ($row = $post->fetch()) {  ?>
 
@@ -112,7 +129,7 @@ try {
             <input type="hidden" name="id" value="<?=$row['id']?>">
             <button type="submit" name="delete" class="btn btn-danger">Delete</button>
           </form>
-      <?php } ?>  
+      <?php } ?>
 
 
 
@@ -122,22 +139,7 @@ try {
 
     }
 
-    if (isset($_POST['delete'])) {
 
-      try {
-
-        echo "ECCO IL TUO POST ID ".$_POST['id'];
-        $DB->delete();
-
-      } catch (Exception $e) {
-
-        echo $e->getMessage();
-
-      }
-
-
-
-    }
 
 
 } catch (Exception $e) {

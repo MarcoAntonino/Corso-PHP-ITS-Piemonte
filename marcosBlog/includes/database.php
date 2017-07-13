@@ -40,8 +40,7 @@ class Database
     $subtitle = $_POST["newSubtitle"];
     $post = $_POST["newPost"];
 		$category = $_POST["newCategory"];
-		echo "GUARDA: ".$_POST["newCategory"];
-    $date = time();
+		$date = time();
     $results->bindParam(":title", $title, PDO::PARAM_STR);
     $results->bindParam(":subtitle", $subtitle, PDO::PARAM_STR);
     $results->bindParam(":post", $post, PDO::PARAM_STR);

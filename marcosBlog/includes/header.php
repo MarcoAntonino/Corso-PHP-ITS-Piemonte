@@ -11,7 +11,7 @@ try {
   $DB = new Database();
   $DB->connection();
   if($DB){
-    echo "sei connesso";
+    //echo "sei connesso";
     echo "<br>";
   }
 
@@ -38,6 +38,8 @@ try {
 
     <title><?=TITLE?></title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
@@ -63,9 +65,8 @@ try {
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="index.php">Home</a>
+          <a class="blog-nav-item" href="index.php">Home</a>
           <a class="blog-nav-item" href="?view=newPost">New Post</a>
-          <a class="blog-nav-item" href="?view=authors">Autori</a>
         </nav>
       </div>
     </div>

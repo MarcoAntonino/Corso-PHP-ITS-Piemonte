@@ -13,28 +13,29 @@
       <label for="post">Post</label>
       <input class="form-control" rows=3 type="text" name="newPost" placeholder="Write here your post..." >
     </div>
+
     <div class="form-group">
-      <label for="imagine">Imagine</label>
-      <input type="file" name="imagine"  >
+      <label for="">Categoria</label>
+      <div class="checkbox">
+        <?php
+        $query = "SELECT id, name FROM categories";
+        $results = $DB->getLink()->prepare($query);
+        $results->execute();
+        $data = $results->fetchAll();
+        ?>
+        <select class="form-control" name="newCategory">
+          <?php
+            foreach ($data as $row) {
+               ?>
+               <option value="<?= $row['id']?>"><?= $row['name']?></option>
+               <?php
+            }
+            ?>
+        </select>
+      </div>
+
     </div>
 
-    <div class="checkbox">
-      <?php
-      $query = "SELECT id, name FROM categories";
-      $results = $DB->getLink()->prepare($query);
-      $results->execute();
-      $data = $results->fetchAll();
-      ?>
-      <select class="form-control" name="newCategory">
-        <?php
-          foreach ($data as $row) {
-             ?>
-             <option value="<?= $row['id']?>"><?= $row['name']?></option>
-             <?php
-          }
-          ?>
-      </select>
-    </div>
     <button type="submit" class="btn btn-primary" name="btnNewPost">Submit</button>
 
   </form>
