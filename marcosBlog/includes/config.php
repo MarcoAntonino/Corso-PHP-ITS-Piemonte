@@ -2,7 +2,7 @@
 session_start();
 
 define('TITLE', 'Vertical Blog');
-define('SUBTITLE', 'A blog made of pizza');
+define('SUBTITLE', 'A blog for climbers');
 
 define('DB_HOST', "localhost");
 define('DB_USER', "root");

@@ -91,11 +91,11 @@ try {
 
 <?php
 
-if (isset($_POST['delete'])) {
+if (isset($_POST['delete'])) { //DELETE
 
   try {
 
-    echo "ECCO IL TUO POST ID ".$_POST['id'];
+    //echo "ECCO IL TUO POST ID ".$_POST['id'];
     $DB->delete();
 
   } catch (Exception $e) {

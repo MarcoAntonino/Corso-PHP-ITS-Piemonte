@@ -1,4 +1,5 @@
-<?php include 'includes/header.php'; ?>
+<?php include 'includes/header.php';
+      ?>
 
 <div class="container">
   <div class="blog-header">
@@ -17,7 +18,7 @@
           break;
       case 'editPost':
           include './includes/editPost.php';
-    
+
       default:
           include './includes/content.php';
            break;
@@ -26,3 +27,5 @@
    ?>
 
 </div>
+
+<?php include 'includes/footer.php'; ?>
