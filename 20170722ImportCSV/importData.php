@@ -1,7 +1,7 @@
 <?php
 //load the database configuration file
-include 'includes\config.php';
-include 'includes\classes\database.php';
+include 'index.php';
+
 
 if(isset($_POST['importSubmit'])){
 
@@ -17,18 +17,30 @@ if(isset($_POST['importSubmit'])){
             fgetcsv($csvFile);
 
             //parse data from csv file line by line
-            while(($line = fgetcsv($csvFile)) !== FALSE){
+            while(($line = fgetcsv($csvFile, 1000, ";")) !== FALSE){
                 //check whether member already exists in database with same email
-                $query = "SELECT id FROM members WHERE email = '".$line[1]."'";
-                $prevResult = $DB->getLink()->prepare($query);
-                $prevResult->execute();
-                if($prevResult->rowCount() > 0){
-                    //update member data
-                    $db->query("UPDATE members SET name = '".$line[0]."', phone = '".$line[2]."', created = '".$line[3]."', modified = '".$line[3]."', status = '".$line[4]."' WHERE email = '".$line[1]."'");
-                }else{
-                    //insert member data into database
-                    $db->query("INSERT INTO members (name, email, phone, created, modified, status) VALUES ('".$line[0]."','".$line[1]."','".$line[2]."','".$line[3]."','".$line[3]."','".$line[4]."')");
+                try {
+                  $query = "SELECT id FROM members WHERE email = '".$line[1]."'";
+                  $prevResult = $DB->getLink()->prepare($query);
+                  $prevResult->execute();
+                  if($prevResult->rowCount() > 0){
+                      //update member data
+                      $query="UPDATE members SET name = '".$line[0]."', phone = '".$line[2]."', created = '".$line[3]."', modified = '".$line[3]."', status = '".$line[4]."' WHERE email = '".$line[1]."'";
+                      $results = $DB->getLink()->prepare($query);
+                      $results->execute();
+                  }else{
+                      //insert member data into database
+                      $query = "INSERT INTO members (name, email, phone, created, modified, status) VALUES ('".$line[0]."','".$line[1]."','".$line[2]."','".$line[3]."','".$line[3]."','".$line[4]."')";
+                      $results = $DB->getLink()->prepare($query);
+                      $results->execute();
+                  }
+
+                } catch (Exception $e) {
+
+                  echo $e->getMessage();
                 }
+
+
             }
 
             //close opened csv file

@@ -66,11 +66,12 @@ if(!empty($_GET['status'])){
                 <tbody>
                 <?php
                     //get records from database
-                    $query = "SELECT * FROM members ORDER BY id DESC";
+
+                    $query = "SELECT * FROM members ORDER BY id ASC";
                     $results = $DB->getLink()->prepare($query);
                     $results->execute();
                     if($results->rowCount() > 0){
-                        while($row = $results->fetch_assoc()){ ?>
+                        while($row = $results->fetch(PDO::FETCH_ASSOC)){ ?>
                     <tr>
                       <td><?php echo $row['name']; ?></td>
                       <td><?php echo $row['email']; ?></td>

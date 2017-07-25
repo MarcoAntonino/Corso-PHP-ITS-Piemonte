@@ -1,8 +1,9 @@
 <?php
 
+
 $row = 1;
-if (($handle = fopen("test.csv", "r")) !== FALSE) {
-    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+if (($handle = fopen("test00.csv", "r")) !== FALSE) {
+    while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
         $num = count($data);
         echo "<p> $num fields in line $row: <br /></p>\n";
         $row++;
@@ -12,6 +13,8 @@ if (($handle = fopen("test.csv", "r")) !== FALSE) {
     }
     fclose($handle);
 }
+
+
 
 
  ?>
