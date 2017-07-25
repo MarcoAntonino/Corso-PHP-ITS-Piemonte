@@ -25,13 +25,37 @@ if(isset($_POST['importSubmit'])){
                   $prevResult->execute();
                   if($prevResult->rowCount() > 0){
                       //update member data
-                      $query="UPDATE members SET name = '".$line[0]."', phone = '".$line[2]."', created = '".$line[3]."', modified = '".$line[3]."', status = '".$line[4]."' WHERE email = '".$line[1]."'";
+                      $query="UPDATE members SET name = :name, phone = :phone, created = :created, modified = :modified, status = :status WHERE email = :email";
                       $results = $DB->getLink()->prepare($query);
+                      $name=$line[0];
+                      $email=$line[1];
+                      $phone=$line[2];
+                      $created=$line[3];
+                      $modified=$line[4];
+                      $status=$line[5];
+                      $results->bindParam(":name", $name,PDO::PARAM_STR);
+                      $results->bindParam(":email", $email,PDO::PARAM_STR);
+                      $results->bindParam(":phone", $phone,PDO::PARAM_STR);
+                      $results->bindParam(":created", $created,PDO::PARAM_STR);
+                      $results->bindParam(":modified", $modified,PDO::PARAM_STR);
+                      $results->bindParam(":status", $status,PDO::PARAM_INT);
                       $results->execute();
                   }else{
                       //insert member data into database
-                      $query = "INSERT INTO members (name, email, phone, created, modified, status) VALUES ('".$line[0]."','".$line[1]."','".$line[2]."','".$line[3]."','".$line[3]."','".$line[4]."')";
+                      $query = "INSERT INTO members (name, email, phone, created, modified, status) VALUES (:name, :email, :phone, :created, :modified, :status)";
                       $results = $DB->getLink()->prepare($query);
+                      $name=$line[0];
+                      $email=$line[1];
+                      $phone=$line[2];
+                      $created=$line[3];
+                      $modified=$line[4];
+                      $status=$line[5];
+                      $results->bindParam(":name", $name,PDO::PARAM_STR);
+                      $results->bindParam(":email", $email,PDO::PARAM_STR);
+                      $results->bindParam(":phone", $phone,PDO::PARAM_STR);
+                      $results->bindParam(":created", $created,PDO::PARAM_STR);
+                      $results->bindParam(":modified", $modified,PDO::PARAM_STR);
+                      $results->bindParam(":status", $status,PDO::PARAM_INT);
                       $results->execute();
                   }
 
