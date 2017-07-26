@@ -17,7 +17,7 @@ if(isset($_POST['importSubmit'])){
             fgetcsv($csvFile);
 
             //parse data from csv file line by line
-            while(($line = fgetcsv($csvFile, 1000, ";")) !== FALSE){
+            while(($line = fgetcsv($csvFile, 1000, ";")) !== FALSE && (!empty($line[0]))){
                 //check whether member already exists in database with same email
                 try {
                   $query = "SELECT id FROM members WHERE email = '".$line[1]."'";
