@@ -22,6 +22,23 @@ if (isset($_POST['submitMateria'])) {
 
   ?>
 
+  <?php
+
+  if(isset($_POST['submitEditedMateria'])){
+    try {
+      $DB = new Database();
+      $DB->connection();
+      $materia = new Materia($_POST['materiaToDelete']);
+      $materia->updateMateria($_POST['idToDelete']);
+
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+
+  }
+
+   ?>
+
  <!DOCTYPE html>
  <html>
    <head>
@@ -84,8 +101,10 @@ if (isset($_POST['submitMateria'])) {
                        <form action="#" method="post">
                          <input type="hidden" name="idToDelete" value="<?=$row['id_materia']?>">
                          <input type="hidden" name="materiaToDelete" value="<?=$row['materia']?>">
-                         <button type="submit" name="delete" class="btn btn-danger">Delete</button></td>
+                         <button type="submit" name="delete" class="btn btn-danger">Delete</button>
                        </form>
+                     </td>
+
                    </tr>
                    <?php
                  }

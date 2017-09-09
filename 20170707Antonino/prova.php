@@ -2,8 +2,11 @@
 
 include 'includes\config.php';
 include 'includes\iscrizione.php';
+include 'includes\materia.php';
+
+$matematica = new Materia("matematica");
+echo $matematica;
 
 
-$iscrizione = new Iscrizione(3,"marco","antonino");
-$iscrizione->deleteIscrizione(1);
+
 ?>

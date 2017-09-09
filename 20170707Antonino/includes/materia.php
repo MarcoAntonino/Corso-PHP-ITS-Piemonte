@@ -66,18 +66,47 @@ class Materia
       $idMateria = $idToDelete;
       $results->bindParam(":id", $idMateria, PDO::PARAM_INT);
       $results->execute();
-      $DB = null;
 
     } catch (Exception $e) {
       echo $e->getMessage();
     }
   }
 
+  public function updateMateria($idToUpdate)
+  {
+    try {
+      $DB = new Database();
+      $DB->connection();
+      if($DB){
+        echo "sei connesso";
+        echo "<br>";
+      }
+
+      $query = "UPDATE materie SET  materia=:materia where id_materia = :id";
+      $results = $DB->getLink()->prepare($query);
+      $idMateria = $idToUpdate;
+      $results->bindParam(":id", $idMateria, PDO::PARAM_INT);
+      $results->execute();
+      if ($results->execute()) {
+        echo $results->rowCount()." records UPDATED successfully";
+  		}else {
+  			echo "Record NOT edited<br>";
+  		}
+
+    } catch (Exception $e) {
+
+      echo $e->getMessage();
+
+
+    }
+
+  }
+
   function __toString()
   {
     if (isset($this->idMateria)) {
 
-      $string = $this->idMateria+$this->idMateria;
+      $string = $this->idMateria+$this->materia;
       return $string;
     }else {
       return $this->materia;
